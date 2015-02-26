@@ -70,31 +70,6 @@ Accounts._callHooksDisconnect = function(provider) {
   });
 }
 
-/////////////
-// METHODS //
-/////////////
-
-var startsWith = function(word, str) {
-  if (!word || !str) return false;
-  return (word.slice(0, str.length) === str);
-}
-
-var extractProviderFromSet = function(set) {
-
-  set = _.keys(set) || [];
-  var provider = _.map(set, function(key) {
-    if (startsWith(key, "services.")) {
-      key = key.split(".")[1];
-    } else {
-      key = null
-    }
-    return key;
-  });
-  provider = _.uniq(_.compact(provider)) || [];
-  return provider[0];
-
-}
-
 /////////////////////
 // EVENTS TRACKING //
 /////////////////////
