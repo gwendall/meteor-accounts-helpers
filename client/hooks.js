@@ -70,14 +70,25 @@ Accounts._callHooksDisconnect = function(provider) {
   });
 }
 
+///////////////////////
+// DISCONNECT METHOD //
+///////////////////////
+
+Accounts.disconnect = function(provider, cb) {
+  Meteor.call('accounts.disconnect', provider, cb);
+}
+
 /////////////////////
 // EVENTS TRACKING //
 /////////////////////
 
-// #TODO find out how to know when the logged-in user is loaded on page load
-Meteor.setTimeout(function() {
+Meteor.startup(function() {
 
   var _user = Meteor.user() || {};
+  if (_user._id) {
+    Accounts._callHooksLogin.apply(this, []);
+  }
+
   Meteor.autorun(function() {
 
     var user = Meteor.user() || {};
@@ -106,4 +117,4 @@ Meteor.setTimeout(function() {
 
   });
 
-}, 3000);
+});
