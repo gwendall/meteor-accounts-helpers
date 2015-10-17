@@ -39,7 +39,7 @@ Accounts.onConnect(function(provider) {
 
 ***Accounts.onDisconnect(cb(provider))***  
 
-Hook for user disconnection to a social account when already logged in.  
+Hook for user disconnection from a social account when already logged in.  
 Requires [splendido:accounts-meld](https://github.com/splendido/meteor-accounts-meld/).  
 ```javascript
 Accounts.onDisconnect(function(provider) {
