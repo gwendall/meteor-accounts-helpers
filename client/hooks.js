@@ -84,36 +84,36 @@ Accounts.disconnect = function(provider, cb) {
 
 Meteor.startup(function() {
 
-  var _user = Meteor.user() || {};
-  if (_user._id) {
+  var user_before = Meteor.user() || {};
+  if (user_before._id) {
     Accounts._callHooksLogin.apply(this, []);
   }
 
   Meteor.autorun(function() {
 
-    var user = Meteor.user() || {};
-    (function(_user, user) {
+    var user_after = Meteor.user() || {};
+    (function(user_before, user_after) {
 
-      if (user === _user) return;
+      if (user_after === user_before) return;
 
-      var loggedIn = ((_.keys(user).length) && (!_.keys(_user).length));
+      var loggedIn = ((_.keys(user_after).length) && (!_.keys(user_before).length));
       if (loggedIn) return Accounts._callHooksLogin.apply(this, []);
 
-      var loggedOut = ((!_.keys(user).length) && (_.keys(_user).length));
+      var loggedOut = ((!_.keys(user_after).length) && (_.keys(user_before).length));
       if (loggedOut) return Accounts._callHooksLogout();
 
-      var _services = _.keys(_user.services || {});
-      var services = _.keys(user.services || {});
-      if (services.length === _services.length) return;
+      var services_before = _.keys(user_before.services || {});
+      var services_after = _.keys(user_after.services || {});
+      if (services_after.length === services_before.length) return;
 
-      var added = _.difference(services, _services);
+      var added = _.difference(services_after, services_before);
       if (added.length === 1) return Accounts._callHooksConnect(added[0]);
 
-      var removed = _.difference(_services, services);
+      var removed = _.difference(services_before, services_after);
       if (removed.length === 1) return Accounts._callHooksDisconnect(removed[0]);
 
-    })(_user, user);
-    _user = user;
+    })(user_before, user_after);
+    user_before = user_after;
 
   });
 
