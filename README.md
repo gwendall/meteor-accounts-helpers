@@ -9,11 +9,50 @@ meteor add gwendall:accounts-helpers
 
 ## Client methods  
 
-***Accounts.onLogin(cb)***: Hook for user log in.  
-***Accounts.onLogout(cb)***: Hook for user log out.  
-***Accounts.onConnect(cb(provider))***: Hook for user connecting a social account when already logged in.    
-***Accounts.onDisconnect(cb(provider))***: Hook for user disconnecting a social account when already logged in.    
-***Accounts.disconnect(provider, cb)***: Disconnect a social account.  
+***Accounts.onLogin(cb)***  
+
+Hook for user log in.  
+```javascript
+Accounts.onLogin(function() {
+  console.log('You are logged in.');
+});
+```
+
+***Accounts.onLogout(cb)***  
+
+Hook for user log out.  
+```javascript
+Accounts.onLogout(function() {
+  console.log('You are logged out.');
+});
+```
+
+***Accounts.onConnect(cb(provider))***  
+
+Hook for user connection to a social account when already logged in.
+```javascript
+Accounts.onConnect(function(provider) {
+  console.log('You have connected your ' + provider + ' account.');
+});
+```
+
+***Accounts.onDisconnect(cb(provider))***  
+
+Hook for user disconnection to a social account when already logged in.
+```javascript
+Accounts.onDisconnect(function(provider) {
+  console.log('You have disconnected your ' + provider + ' account.');
+});
+```
+
+***Accounts.disconnect(provider, cb)***  
+
+Disconnect a social account.  
+```javascript
+Accounts.disconnect('facebook', function() {
+  console.log('You have disconnected your Facebook account.');
+});
+```
 
 ## Client template helpers  
 
@@ -34,7 +73,19 @@ Logs the user out.
 
 ## Server methods  
 
-***Accounts.onJoin(cb({ user: ..., provider: ... }))***: On user joins for the first time [1].
-***Accounts.disconnect(userId, provider)***: Disconnect a social account.  
+***Accounts.onJoin(cb(data))***  
 
-[1]: onJoin does not trigger when Accounts.createUser is called with no client/user intent.
+On user joins for the first time. The hook does not get triggered when Accounts.createUser is called with no client / user intent.
+```javascript
+Accounts.onJoin(function(data) {
+  console.log('A user has joined from ' + data.type);
+});
+```
+
+***Accounts.disconnect(userId, provider)***  
+
+Disconnect an account provider.
+```javascript
+USER_ID = '...';
+Accounts.disconnect(USER_ID, 'facebook');
+```
