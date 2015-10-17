@@ -92,18 +92,18 @@ Meteor.startup(function() {
   Meteor.autorun(function() {
 
     var user_after = Meteor.user() || {};
-    (function(user_before, user_after) {
+    (function(u_before, u_after) {
 
-      if (user_after === user_before) return;
+      if (u_after === u_before) return;
 
-      var loggedIn = ((_.keys(user_after).length) && (!_.keys(user_before).length));
+      var loggedIn = ((_.keys(u_after).length) && (!_.keys(u_before).length));
       if (loggedIn) return Accounts._callHooksLogin.apply(this, []);
 
-      var loggedOut = ((!_.keys(user_after).length) && (_.keys(user_before).length));
+      var loggedOut = ((!_.keys(u_after).length) && (_.keys(u_before).length));
       if (loggedOut) return Accounts._callHooksLogout();
 
-      var services_before = _.keys(user_before.services || {});
-      var services_after = _.keys(user_after.services || {});
+      var services_before = _.keys(u_before.services || {});
+      var services_after = _.keys(u_after.services || {});
       if (services_after.length === services_before.length) return;
 
       var added = _.difference(services_after, services_before);

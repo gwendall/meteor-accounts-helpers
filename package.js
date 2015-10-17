@@ -1,7 +1,7 @@
 Package.describe({
   name: 'gwendall:accounts-helpers',
   summary: 'Useful helpers for Accounts',
-  version: '0.1.5',
+  version: '0.1.6',
   git: 'https://github.com/gwendall/meteor-accounts-helpers'
 });
 
