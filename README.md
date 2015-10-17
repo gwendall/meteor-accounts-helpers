@@ -7,13 +7,6 @@ Installation
 meteor add gwendall:accounts-helpers
 ```
 
-## Server methods  
-
-***Accounts.onJoin(cb({ user: ..., provider: ... }))***: On user joins for the first time [1].
-***Accounts.disconnect(userId, provider)***: Disconnect a social account.  
-
-[1]: onJoin does not trigger when Accounts.createUser is called with no client/user intent.
-
 ## Client methods  
 
 ***Accounts.onLogin(cb)***: Hook for user log in.  
@@ -38,3 +31,10 @@ Removes the given provider's credentials from the user.
   <button data-accounts-logout>Log out</button>
 ```
 Logs the user out.
+
+## Server methods  
+
+***Accounts.onJoin(cb({ user: ..., provider: ... }))***: On user joins for the first time [1].
+***Accounts.disconnect(userId, provider)***: Disconnect a social account.  
+
+[1]: onJoin does not trigger when Accounts.createUser is called with no client/user intent.
