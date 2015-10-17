@@ -35,6 +35,6 @@ Logs in the user with a given provider.
 Removes the given provider's credentials from the user.
 
 ```html
-  <button data-accounts-logout>Log out</span>Login with {{provider}}</button>
+  <button data-accounts-logout>Log out</button>
 ```
 Logs the user out.
