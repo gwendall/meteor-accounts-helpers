@@ -24,6 +24,17 @@ meteor add gwendall:accounts-helpers
 
 ## Client template helpers  
 
-***<span data-accounts-loginwith={{provider}}>Login with {{provider}}</span>***: Logs in the user with a given provider.  
-***<span data-accounts-disconnect={{provider}}>Disconnect {{provider}}</span>***: Removed the given provider's credentials from the user.  
-***<span data-accounts-logout>Log out</span>***: Logs the user out.
+```html
+  <button data-accounts-loginwith={{provider}}>Login with {{provider}}</button>
+```
+Logs in the user with a given provider.  
+
+```html
+  <button data-accounts-disconnect={{provider}}>Disconnect {{provider}}</button>
+```
+Removes the given provider's credentials from the user.
+
+```html
+  <button data-accounts-logout>Log out</span>Login with {{provider}}</button>
+```
+Logs the user out.
