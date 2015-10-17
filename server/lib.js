@@ -1,19 +1,13 @@
+///////////////////////
+// DISCONNECT METHOD //
+///////////////////////
+
 Meteor.methods({
   'accounts.disconnect': function(provider) {
     check(this.userId, String);
     check(provider, String);
     Accounts.disconnect(this.userId, provider);
   }
-});
-
-Accounts.onLogin(function(data) {
-  var user = Meteor._get(data, 'user');
-  if (user._loggedIn) return;
-  var selector = { _id: user._id };
-  var modifier = { $set: { _loggedIn: true }};
-  Meteor.users.update(selector, modifier);
-  data.user = Meteor.users.findOne(selector);
-  Accounts._execOnJoinHooks(data);
 });
 
 Accounts.disconnect = function(userId, provider) {
@@ -27,7 +21,21 @@ Accounts.disconnect = function(userId, provider) {
   Meteor.users.update(selector, modifier);
   return provider;
 
-}
+};
+
+////////////////////
+// ON JOIN METHOD //
+////////////////////
+
+Accounts.onLogin(function(data) {
+  var user = Meteor._get(data, 'user');
+  if (user._loggedIn) return;
+  var selector = { _id: user._id };
+  var modifier = { $set: { _loggedIn: true }};
+  Meteor.users.update(selector, modifier);
+  data.user = Meteor.users.findOne(selector);
+  Accounts._execOnJoinHooks(data);
+});
 
 Accounts.onJoin = function(hook) {
   Accounts._onJoinHooks.push(hook);

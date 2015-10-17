@@ -7,14 +7,14 @@ Accounts._hooksLogin = Accounts._hooksLogin || [];
 Accounts.onLogin = function(cb) {
   if (!_.isFunction(cb)) return;
   Accounts._hooksLogin.push(cb);
-}
+};
 
 Accounts._callHooksLogin = function() {
   var self = this;
   Accounts._hooksLogin.forEach(function(cb) {
     cb.apply(self);
   });
-}
+};
 
 //////////////////
 // LOGOUT HOOKS //
@@ -25,14 +25,14 @@ Accounts._hooksLogout = Accounts._hooksLogout || [];
 Accounts.onLogout = function(cb) {
   if (!_.isFunction(cb)) return;
   Accounts._hooksLogout.push(cb);
-}
+};
 
 Accounts._callHooksLogout = function() {
   var self = this;
   Accounts._hooksLogout.forEach(function(cb) {
     cb.apply(self);
   });
-}
+};
 
 /////////////////////
 // CONNECTED HOOKS //
@@ -43,14 +43,14 @@ Accounts._hooksConnect = Accounts._hooksConnect || [];
 Accounts.onConnect = function(cb) {
   if (!_.isFunction(cb)) return;
   Accounts._hooksConnect.push(cb);
-}
+};
 
 Accounts._callHooksConnect = function(provider) {
   var self = this;
   Accounts._hooksConnect.forEach(function(cb) {
     cb.apply(self, [provider]);
   });
-}
+};
 
 ////////////////////////
 // DISCONNECTED HOOKS //
@@ -61,14 +61,14 @@ Accounts._hooksDisconnect = Accounts._hooksDisconnect || [];
 Accounts.onDisconnect = function(cb) {
   if (!_.isFunction(cb)) return;
   Accounts._hooksDisconnect.push(cb);
-}
+};
 
 Accounts._callHooksDisconnect = function(provider) {
   var self = this;
   Accounts._hooksDisconnect.forEach(function(cb) {
     cb.apply(self, [provider]);
   });
-}
+};
 
 ///////////////////////
 // DISCONNECT METHOD //
@@ -76,7 +76,7 @@ Accounts._callHooksDisconnect = function(provider) {
 
 Accounts.disconnect = function(provider, cb) {
   Meteor.call('accounts.disconnect', provider, cb);
-}
+};
 
 /////////////////////
 // EVENTS TRACKING //

@@ -1,6 +1,6 @@
 var cap = function(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
-}
+};
 
 var getAccountsUiOptions = function(provider) {
 
@@ -11,7 +11,7 @@ var getAccountsUiOptions = function(provider) {
   }
   return options;
 
-}
+};
 
 Template.body.events({
   'click [data-accounts-loginwith]': function(e, tpl) {

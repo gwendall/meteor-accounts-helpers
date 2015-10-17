@@ -30,6 +30,7 @@ Accounts.onLogout(function() {
 ***Accounts.onConnect(cb(provider))***  
 
 Hook for user connection to a social account when already logged in.
+Requires [splendido:accounts-meld](https://github.com/splendido/meteor-accounts-meld/).  
 ```javascript
 Accounts.onConnect(function(provider) {
   console.log('You have connected your ' + provider + ' account.');
@@ -39,6 +40,7 @@ Accounts.onConnect(function(provider) {
 ***Accounts.onDisconnect(cb(provider))***  
 
 Hook for user disconnection to a social account when already logged in.
+Requires [splendido:accounts-meld](https://github.com/splendido/meteor-accounts-meld/).  
 ```javascript
 Accounts.onDisconnect(function(provider) {
   console.log('You have disconnected your ' + provider + ' account.');
@@ -48,6 +50,7 @@ Accounts.onDisconnect(function(provider) {
 ***Accounts.disconnect(provider, cb)***  
 
 Disconnect a social account.  
+Requires [splendido:accounts-meld](https://github.com/splendido/meteor-accounts-meld/).  
 ```javascript
 Accounts.disconnect('facebook', function() {
   console.log('You have disconnected your Facebook account.');
@@ -65,6 +68,7 @@ Logs in the user with a given provider.
   <button data-accounts-disconnect={{provider}}>Disconnect {{provider}}</button>
 ```
 Removes the given provider's credentials from the user.
+Requires [splendido:accounts-meld](https://github.com/splendido/meteor-accounts-meld/).  
 
 ```html
   <button data-accounts-logout>Log out</button>
@@ -85,6 +89,7 @@ Accounts.onJoin(function(data) {
 ***Accounts.disconnect(userId, provider)***  
 
 Disconnect an account provider.
+Requires [splendido:accounts-meld](https://github.com/splendido/meteor-accounts-meld/).  
 ```javascript
 USER_ID = '...';
 Accounts.disconnect(USER_ID, 'facebook');
