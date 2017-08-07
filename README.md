@@ -1,3 +1,8 @@
+```diff
+- NOTE: This package is not maintained anymore.
+- If you want to help, please reach out to gwendall.esnault@gmail.com
+```
+
 This package provides helpful helpers to deal with users.
 
 Installation
